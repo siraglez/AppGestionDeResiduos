@@ -21,7 +21,7 @@ class MainActivity : ComponentActivity() {
             AppGestionDeResiduosTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     Greeting(
-                        name = "Android",
+                        name = "usuario",
                         modifier = Modifier.padding(innerPadding)
                     )
                 }
@@ -33,7 +33,7 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
     Text(
-        text = "Hello $name!",
+        text = "Bienvenido a la app de reciclaje $name!",
         modifier = modifier
     )
 }
