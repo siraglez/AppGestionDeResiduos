@@ -36,13 +36,10 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             AppGestionDeResiduosTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     Greeting(
                         name = "usuario",
-                        modifier = Modifier.padding(innerPadding)
+                        modifier = Modifier.padding(16.dp)
                     )
-
-                }
             }
 
         }
