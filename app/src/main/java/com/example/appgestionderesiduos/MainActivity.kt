@@ -6,6 +6,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -24,6 +25,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -85,11 +87,18 @@ fun GreetingPreview() {
 @Composable
 fun BotonC(){
     val context = LocalContext.current
-    Button(onClick = {
-        context.startActivity(Intent(context, MainActivity::class.java)) //cambiar a la clase para el calendario
-    }) {
-        Text("Calendario")
-    }
+    val miColor = colorResource(id = R.color.mio)
+
+        Button(onClick = {
+            context.startActivity(
+                Intent(
+                    context,
+                    MainActivity::class.java
+                )
+            ) //cambiar a la clase para el calendario
+        }, modifier = Modifier.background(miColor)) {
+            Text("Calendario")
+        }
 }
 
 @Composable
