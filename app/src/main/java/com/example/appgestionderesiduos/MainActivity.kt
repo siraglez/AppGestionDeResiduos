@@ -87,7 +87,7 @@ fun GreetingPreview() {
 @Composable
 fun BotonC(){
     val context = LocalContext.current
-    val miColor = colorResource(id = R.color.mio)
+    //val miColor = colorResource(id = R.color.mio)
 
         Button(onClick = {
             context.startActivity(
@@ -96,7 +96,7 @@ fun BotonC(){
                     MainActivity::class.java
                 )
             ) //cambiar a la clase para el calendario
-        }, modifier = Modifier.background(miColor)) {
+        }) {
             Text("Calendario")
         }
 }
