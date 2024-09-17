@@ -36,10 +36,12 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             AppGestionDeResiduosTheme {
+                Surface (color = Color.White) {
                     Greeting(
                         name = "usuario",
                         modifier = Modifier.padding(16.dp)
                     )
+                }
             }
 
         }
@@ -49,7 +51,7 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
 
-    Surface(color = Color.Green) {
+   // Surface(color = Color.Green) {
         Column(
             modifier = modifier.padding(16.dp)
         ) {
@@ -69,7 +71,7 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
 
             BotonM()
         }
-    }
+    //}
 }
 
 @Preview(showBackground = true)
