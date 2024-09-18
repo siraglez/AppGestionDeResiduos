@@ -87,8 +87,6 @@ fun GreetingPreview() {
 @Composable
 fun BotonC(){
     val context = LocalContext.current
-    //val miColor = colorResource(id = R.color.mio)
-
         Button(onClick = {
             context.startActivity(
                 Intent(
