@@ -116,6 +116,7 @@ fun BotonM(){
         context.startActivity(Intent(context, MainActivity::class.java)) //cambiar a la clase para el mapa
     }) {
         Text("Mapa")
+
     }
 }
 
