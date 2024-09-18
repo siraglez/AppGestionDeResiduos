@@ -91,9 +91,9 @@ fun BotonC(){
             context.startActivity(
                 Intent(
                     context,
-                    MainActivity::class.java
+                    CalendarActivity::class.java
                 )
-            ) //cambiar a la clase para el calendario
+            )
         }) {
             Text("Calendario")
         }
