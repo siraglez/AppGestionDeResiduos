@@ -8,14 +8,10 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
@@ -25,6 +21,8 @@ import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.runtime.mutableStateListOf
+
 
 class CalendarActivity : ComponentActivity() {
 
@@ -64,6 +62,43 @@ class CalendarActivity : ComponentActivity() {
 
             Spacer(modifier = Modifier.height(16.dp))
 
+            Row(
+                horizontalArrangement = Arrangement.SpaceBetween,
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                // Botón para Establecer Recordatorio
+                Button(onClick = {
+                    if (selectedDate.value != 0L) {
+                        // Guardar el recordatorio en la lista y establecer el recordatorio
+                        reminders.add(Reminder(selectedDate.value)) // Guardar el recordatorio
+                        setReminder(selectedDate.value) // Establecer la alarma
+                        Toast.makeText(
+                            this@CalendarActivity,
+                            "Recordatorio establecido para ${Date(selectedDate.value)}",
+                            Toast.LENGTH_LONG
+                        ).show()
+                    } else {
+                        Toast.makeText(
+                            this@CalendarActivity,
+                            "Selecciona una fecha primero",
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
+                }) {
+                    Text(text = "Establecer Recordatorio")
+                }
+
+
+                Spacer(modifier = Modifier.width(8.dp))
+
+                // Botón para Volver a la página principal
+                Button(onClick = {
+                    // Crear un intent para ir a la otra clase/actividad
+                    val intent = Intent(this@CalendarActivity, MainActivity::class.java)
+                    startActivity(intent) // Iniciar la actividad nueva
+                }) {
+                    Text(text = "Volver a la página principal")
+
             // Botón para Establecer Recordatorio
             Button(onClick = {
                 if (selectedDate.value != 0L) {
@@ -82,8 +117,14 @@ class CalendarActivity : ComponentActivity() {
                         Toast.LENGTH_LONG
                     ).show()
                 }
-            }) {
-                Text(text = "Establecer Recordatorio")
+            }
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            // Mostrar todos los recordatorios programados
+            Text(text = "Recordatorios programados:")
+            reminders.forEach { reminder ->
+                Text(text = "Recordatorio para: ${Date(reminder.timeInMillis)}")
             }
 
             Spacer(modifier = Modifier.height(16.dp))
@@ -123,4 +164,5 @@ class CalendarActivity : ComponentActivity() {
 }
 
 // Clase para representar un recordatorio
+data class Reminder(val timeInMillis: Long)
 data class Reminder(val timeInMillis: Long)
