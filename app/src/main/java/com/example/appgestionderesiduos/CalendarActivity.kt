@@ -17,9 +17,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import java.util.*
 import android.widget.CalendarView
-import androidx.compose.runtime.mutableStateListOf
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.runtime.mutableStateListOf
 
@@ -98,33 +95,7 @@ class CalendarActivity : ComponentActivity() {
                     startActivity(intent) // Iniciar la actividad nueva
                 }) {
                     Text(text = "Volver a la página principal")
-
-            // Botón para Establecer Recordatorio
-            Button(onClick = {
-                if (selectedDate.value != 0L) {
-                    // Guardar el recordatorio en la lista y establecer el recordatorio
-                    reminders.add(Reminder(selectedDate.value)) // Guardar el recordatorio
-                    setReminder(selectedDate.value) // Establecer la alarma
-                    Toast.makeText(
-                        this@CalendarActivity,
-                        "Recordatorio establecido para ${Date(selectedDate.value)}",
-                        Toast.LENGTH_LONG
-                    ).show()
-                } else {
-                    Toast.makeText(
-                        this@CalendarActivity,
-                        "Selecciona una fecha primero",
-                        Toast.LENGTH_LONG
-                    ).show()
                 }
-            }
-
-            Spacer(modifier = Modifier.height(16.dp))
-
-            // Mostrar todos los recordatorios programados
-            Text(text = "Recordatorios programados:")
-            reminders.forEach { reminder ->
-                Text(text = "Recordatorio para: ${Date(reminder.timeInMillis)}")
             }
 
             Spacer(modifier = Modifier.height(16.dp))
@@ -164,5 +135,4 @@ class CalendarActivity : ComponentActivity() {
 }
 
 // Clase para representar un recordatorio
-data class Reminder(val timeInMillis: Long)
 data class Reminder(val timeInMillis: Long)
