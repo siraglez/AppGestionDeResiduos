@@ -197,6 +197,9 @@ fun createPieData(): PieData {
     return PieData(dataSet)
 }
 
+
+
+
 @Preview(showBackground = true)
 @Composable
 fun EstadisticasPreview() {
