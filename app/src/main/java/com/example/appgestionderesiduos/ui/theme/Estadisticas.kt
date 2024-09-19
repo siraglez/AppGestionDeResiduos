@@ -26,6 +26,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
 
+
+
+
 @Composable
 fun Estadisticas() {
     val barData = createBarData()
@@ -87,6 +90,9 @@ fun Estadisticas() {
     }
 }
 
+
+
+//GRAFICO BARRAS
 @Composable
 fun createBarData(): BarData {
     val entries = listOf(
@@ -110,6 +116,9 @@ fun createBarData(): BarData {
     return BarData(dataSet)
 }
 
+
+
+//GRAFICO LINEAS
 @Composable
 fun createLineData(): LineData {
     val entries1 = listOf(
@@ -147,6 +156,9 @@ fun createLineData(): LineData {
     return LineData(dataSet1, dataSet2)
 }
 
+
+
+//QUESITO (GRAFICO DE TORTA)
 @Composable
 fun createPieData(): PieData {
     val entries = listOf(
