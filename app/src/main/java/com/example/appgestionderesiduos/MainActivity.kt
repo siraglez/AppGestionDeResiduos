@@ -41,7 +41,6 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
 
-   // Surface(color = Color.Green) {
         Column(
             modifier = modifier.padding(16.dp)
         ) {
@@ -61,7 +60,7 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
 
             BotonM()
         }
-    //}
+
 }
 
 @Preview(showBackground = true)
@@ -73,18 +72,18 @@ fun GreetingPreview() {
 }
 
 @Composable
-fun BotonC(){
+fun BotonC() {
     val context = LocalContext.current
-        Button(onClick = {
-            context.startActivity(
-                Intent(
-                    context,
-                    CalendarActivity::class.java
-                )
+    Button(onClick = {
+        context.startActivity(
+            Intent(
+                context,
+                CalendarActivity::class.java
             )
-        }) {
-            Text("Calendario")
-        }
+        )
+    }) {
+        Text("Calendario")
+    }
 }
 
 @Composable
