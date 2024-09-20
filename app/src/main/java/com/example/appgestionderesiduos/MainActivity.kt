@@ -5,14 +5,12 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.material3.MaterialTheme //añadido rama estadistica
 import androidx.compose.material3.Surface//añadido rama estadistica (este creo que esta repe)
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -92,9 +90,14 @@ fun BotonC() {
 fun BotonE(){
     val context = LocalContext.current
     Button(onClick = {
-        context.startActivity(Intent(context, MainActivity::class.java)) //cambiar a la clase para las estadisticas
+        context.startActivity(
+            Intent(
+                context,
+                EstadisticasActivity::class.java
+            )
+        )
     }) {
-        Text("Estadisticas")
+        Text("Estadísticas")
     }
 }
 

@@ -1,4 +1,4 @@
-package com.example.appgestionderesiduos.ui.theme
+package com.example.appgestionderesiduos
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -28,8 +28,7 @@ import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
-
-
+import com.example.appgestionderesiduos.ui.theme.AppGestionDeResiduosTheme
 
 
 class EstadisticasActivity : ComponentActivity() {
