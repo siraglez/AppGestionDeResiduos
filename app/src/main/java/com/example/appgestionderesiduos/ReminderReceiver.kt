@@ -20,14 +20,19 @@ class ReminderReceiver : BroadcastReceiver() {
                 notificationManager.createNotificationChannel(channel)
             }
 
+            // Obtener el identificador del recordatorio desde el intent
+            val reminderId = intent?.getLongExtra("reminder_id", 0L) ?: 0L
+
             val notification = NotificationCompat.Builder(context, channelId)
                 .setContentTitle("Recordatorio de Reciclaje")
-                .setContentText("Es hora de reciclar en la fecha y hora que seleccionaste.")
-                .setSmallIcon(R.drawable.ic_launcher_foreground) // Asegúrate de tener un ícono en tu proyecto
+                .setContentText("Es hora de reciclar en la fecha que seleccionaste.")
+                .setSmallIcon(R.drawable.ic_launcher_foreground)
                 .setAutoCancel(true)
                 .build()
 
-            notificationManager.notify(1, notification)
+            // Usar el `reminderId` como identificador único para la notificación
+            notificationManager.notify(reminderId.toInt(), notification)
         }
     }
 }
+

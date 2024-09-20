@@ -5,6 +5,8 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.material3.MaterialTheme //añadido rama estadistica
+import androidx.compose.material3.Surface//añadido rama estadistica (este creo que esta repe)
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
@@ -106,5 +108,4 @@ fun BotonM(){
 
     }
 }
-
 
