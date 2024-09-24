@@ -1,6 +1,7 @@
 package com.example.appgestionderesiduos
 
 import android.content.Intent
+import android.content.res.Resources.Theme
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -25,14 +26,16 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            AppGestionDeResiduosTheme {
-                Surface (color = Color.White) {
-                    Greeting(
-                        name = "usuario",
-                        modifier = Modifier.padding(16.dp)
-                    )
-                }
-            }
+
+
+                    Surface(color = Color.White) {
+                        Greeting(
+                            name = "usuario",
+                            modifier = Modifier.padding(16.dp)
+                        )
+                    }
+
+
 
         }
     }
