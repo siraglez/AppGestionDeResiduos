@@ -20,6 +20,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.appgestionderesiduos.ui.theme.AppGestionDeResiduosTheme
+import java.util.Calendar
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,9 +48,17 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
         Column(
             modifier = modifier.padding(16.dp)
         ) {
-            Text(
-                text = "Bienvenido a la app de reciclaje $name!"
-            )
+            val hora = Calendar.getInstance().get(Calendar.HOUR_OF_DAY) //usamos una variable que guarde la hora en la que se esta haciendo uso de la aplicación
+            val bienvenida = when {
+                hora < 13 -> "Buenos días"
+                hora < 20 -> "Buenas tardes"
+                else -> "Buenas noches"
+            }
+            //creamos una variable bienvenida que cambiara dependiendo de la hora en la que se use la aplicación
+
+            Text(text = bienvenida)
+            Spacer(modifier = Modifier.height(16.dp))
+            Text(text = "Bienvenido $name")
 
             Spacer(modifier = Modifier.height(16.dp))
 
