@@ -25,6 +25,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".CalendarActivity"/>
+        <activity android:name=".EstadisticasActivity"/>
+
         <receiver android:name=".ReminderReceiver" android:exported="true" />
     </application>
 
