@@ -29,7 +29,7 @@ class MainActivity : ComponentActivity() {
         setContent {
 
 
-                    Surface(color = Color.White) {
+                    Surface() {
                         Greeting(
                             name = "usuario",
                             modifier = Modifier.padding(16.dp)
