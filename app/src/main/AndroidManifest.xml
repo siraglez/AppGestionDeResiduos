@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -27,7 +28,6 @@
         <activity android:name=".CalendarActivity"/>
         <activity android:name=".EstadisticasActivity"/>
 
-        <receiver android:name=".ReminderReceiver" android:exported="true" />
     </application>
 
 </manifest>
