@@ -1,17 +1,16 @@
 package com.example.appgestionderesiduos
 
 import android.content.Intent
-import android.content.res.Resources.Theme
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.material3.Surface//añadido rama estadistica (este creo que esta repe)
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -26,44 +25,39 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-
-
-                    Surface(color = Color.White) {
-                        Greeting(
-                            name = "usuario",
-                            modifier = Modifier.padding(16.dp)
-                        )
-                    }
-
-
-
+            AppGestionDeResiduosTheme {
+                Surface(color = Color.White) {
+                    Greeting(
+                        name = "usuario",
+                        modifier = Modifier.padding(16.dp)
+                    )
+                }
+            }
         }
     }
 }
 
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
+    Column(
+        modifier = modifier.padding(16.dp)
+    ) {
+        Text(
+            text = "Bienvenido a la app de reciclaje $name!"
+        )
 
-        Column(
-            modifier = modifier.padding(16.dp)
-        ) {
-            Text(
-                text = "Bienvenido a la app de reciclaje $name!"
-            )
+        Spacer(modifier = Modifier.height(16.dp))
 
-            Spacer(modifier = Modifier.height(16.dp))
+        BotonC()
 
-            BotonC()
+        Spacer(modifier = Modifier.height(16.dp))
 
-            Spacer(modifier = Modifier.height(16.dp))
+        BotonE()
 
-            BotonE()
+        Spacer(modifier = Modifier.height(16.dp))
 
-            Spacer(modifier = Modifier.height(16.dp))
-
-            BotonM()
-        }
-
+        BotonM()
+    }
 }
 
 @Preview(showBackground = true)
@@ -90,7 +84,7 @@ fun BotonC() {
 }
 
 @Composable
-fun BotonE(){
+fun BotonE() {
     val context = LocalContext.current
     Button(onClick = {
         context.startActivity(
@@ -105,13 +99,13 @@ fun BotonE(){
 }
 
 @Composable
-fun BotonM(){
+fun BotonM() {
     val context = LocalContext.current
     Button(onClick = {
-        context.startActivity(Intent(context, MainActivity::class.java)) //cambiar a la clase para el mapa
+        context.startActivity(
+            Intent(context, MapActivity::class.java)
+        )
     }) {
         Text("Mapa")
-
     }
 }
-
