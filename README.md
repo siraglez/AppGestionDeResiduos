@@ -35,6 +35,13 @@ Por último, al final del activity encontramos los recordatorios que el usuario 
 
 ## Pantalla mapa
 
+En esta pantalla se muetran difrenetes ubicaciones en las que los usuarios pueden ir a el punto de reciclaje más conveniente. 
+
+--> Presenta un botón para volver a la pantalla principal 
+
+En primer lugar se quiso vincular con google maps para tener el mapa a tiempo real, finalmente hemos optado por una imagen representativa del mapa de la comunidad de Madrid, haciedno un boceto con los pines verdes indicando dónde pueden los usuarios dirigirse para reciclar.
+
+
 ## Pantalla estadísticas
 
 En esta pantalla se le muestran al usuario las estadísticas de la aplicación, como la aplicación no esta siendo utilizada por usuarios reales no se tienen estadísticas reales, por lo tanto hacemos uso de estadísticas ficticias con las cuáles el usuario puede interactúar. 
