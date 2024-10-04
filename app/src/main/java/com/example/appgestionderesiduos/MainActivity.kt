@@ -69,6 +69,8 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
             Spacer(modifier = Modifier.height(16.dp))
 
             BotonM()
+
+            //añadimos los botones que nos llevaran a las diferentes pantallas de la aplicación
         }
 
 }
@@ -121,4 +123,6 @@ fun BotonM(){
 
     }
 }
+
+//creamos los botones que nos llevaran a las diferentes pantallas de la aplicación
 
