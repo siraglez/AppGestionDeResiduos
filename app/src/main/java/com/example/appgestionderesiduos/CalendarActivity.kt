@@ -19,6 +19,8 @@ import java.util.*
 import android.widget.CalendarView
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.text.style.TextAlign
 
 
 class CalendarActivity : ComponentActivity() {
@@ -27,6 +29,7 @@ class CalendarActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        loadReminders() //Cargar los recordatorios al iniciar la actividad
         setContent {
             CalendarScreen()
         }
@@ -36,87 +39,86 @@ class CalendarActivity : ComponentActivity() {
     fun CalendarScreen() {
         var selectedDate = remember { mutableStateOf(0L) } // Uso de remember para recordar la fecha seleccionada
 
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(16.dp)
-        ) {
-            // CalendarView en Compose
-            AndroidView(
-                modifier = Modifier.weight(1f),
-                factory = { context ->
-                    CalendarView(context).apply {
-                        setOnDateChangeListener { _, year, month, dayOfMonth ->
-                            // Para guardar la fecha seleccionada al inicio del día (00:00 horas)
-                            val calendar = Calendar.getInstance()
-                            calendar.set(year, month, dayOfMonth, 0, 0, 0)
-                            calendar.set(Calendar.MILLISECOND, 0)
-                            selectedDate.value = calendar.timeInMillis
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(16.dp)
+            ) {
+                // CalendarView en Compose
+                AndroidView(
+                    modifier = Modifier.weight(1f),
+                    factory = { context ->
+                        CalendarView(context).apply {
+                            setOnDateChangeListener { _, year, month, dayOfMonth ->
+                                // Para guardar la fecha seleccionada al inicio del día (00:00 horas)
+                                val calendar = Calendar.getInstance()
+                                calendar.set(year, month, dayOfMonth, 0, 0, 0)
+                                calendar.set(Calendar.MILLISECOND, 0)
+                                selectedDate.value = calendar.timeInMillis
+                            }
                         }
                     }
-                }
-            )
+                )
 
-            Spacer(modifier = Modifier.height(16.dp))
+                Spacer(modifier = Modifier.height(16.dp))
 
-            Row(
-                horizontalArrangement = Arrangement.SpaceBetween,
-                modifier = Modifier.fillMaxWidth()
-            ) {
-                // Botón para Establecer Recordatorio
-                Button(onClick = {
-                    if (selectedDate.value != 0L) {
-                        // Guardar el recordatorio en la lista y establecer el recordatorio
-                        reminders.add(Reminder(selectedDate.value)) // Guardar el recordatorio
-                        setReminder(selectedDate.value) // Establecer la alarma
-                        Toast.makeText(
-                            this@CalendarActivity,
-                            "Recordatorio establecido para ${Date(selectedDate.value)}",
-                            Toast.LENGTH_LONG
-                        ).show()
-                    } else {
-                        Toast.makeText(
-                            this@CalendarActivity,
-                            "Selecciona una fecha primero",
-                            Toast.LENGTH_LONG
-                        ).show()
+                Row(
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    // Botón para Establecer Recordatorio
+                    Button(onClick = {
+                        if (selectedDate.value != 0L) {
+                            // Guardar el recordatorio en la lista
+                            reminders.add(Reminder(selectedDate.value)) // Guardar el recordatorio
+                            saveReminder(selectedDate.value) // Guardar el recordatorio en SharedPreferences
+                            Toast.makeText(
+                                this@CalendarActivity,
+                                "Recordatorio establecido para ${Date(selectedDate.value)}",
+                                Toast.LENGTH_LONG
+                            ).show()
+                        } else {
+                            Toast.makeText(
+                                this@CalendarActivity,
+                                "Selecciona una fecha primero",
+                                Toast.LENGTH_LONG
+                            ).show()
+                        }
+                    }, 
+                        modifier = Modifier.width(140.dp) //Limitar el ancho del botón
+                    ) {
+                        Text(
+                            text = "Establecer Recordatorio",
+                            maxLines = 2, //Dividir el texto en dos líneas si es necesario
+                            modifier = Modifier.fillMaxWidth(), //Asegurarse de que el texto ocupe el ancho del botón
+                            textAlign = TextAlign.Center //Centrar el texto horizontalmente
+                        )
+                    }// Botón para volver a la página principal
+                    Button(onClick = {
+                        val intent = Intent(this@CalendarActivity, MainActivity::class.java)
+                        startActivity(intent)
+                    },
+                        modifier = Modifier
+                            .width(140.dp) //Limitar el ancho del botón
+                    ) {
+                        Text(
+                            text = "Volver a la página principal",
+                            maxLines = 3, //Permitir que el texto se divida en dos líneas
+                            modifier = Modifier.fillMaxWidth(), //Asegurarse que el texto ocupe el ancho disponible
+                            textAlign = TextAlign.Center //Centrar el texto horizontalmente
+                        )
                     }
-                }) {
-                    Text(text = "Establecer Recordatorio")
                 }
 
+                Spacer(modifier = Modifier.height(16.dp))
 
-                Spacer(modifier = Modifier.width(8.dp))
-
-                // Botón para Volver a la página principal
-                Button(onClick = {
-                    // Crear un intent para ir a la otra clase/actividad
-                    val intent = Intent(this@CalendarActivity, MainActivity::class.java)
-                    startActivity(intent) // Iniciar la actividad nueva
-                }) {
-                    Text(text = "Volver a la página principal")
+                //Mostrar todos los recordatorios programados
+                Text(text = "Recordatorios programados:")
+                reminders.forEach { reminder ->
+                    Text(text = "Recordatorio para: ${Date(reminder.timeInMillis)}")
                 }
             }
-
-            Spacer(modifier = Modifier.height(16.dp))
-
-            // Mostrar todos los recordatorios programados
-            Text(text = "Recordatorios programados:")
-            reminders.forEach { reminder ->
-                Text(text = "Recordatorio para: ${Date(reminder.timeInMillis)}")
-            }
         }
-    }
-
-    //Función para establecer el recordatorio
-    fun setReminder(timeInMillis: Long) {
-        val alarmManager = getSystemService(ALARM_SERVICE) as AlarmManager
-        val intent = Intent(this, ReminderReceiver::class.java).apply {
-            putExtra("reminder_id", timeInMillis) // Pasar el identificador del recordatorio
-        }
-        val pendingIntent = PendingIntent.getBroadcast(this, timeInMillis.toInt(), intent, PendingIntent.FLAG_IMMUTABLE)
-        alarmManager.setExact(AlarmManager.RTC_WAKEUP, timeInMillis, pendingIntent)
-    }
 
     //Función para guardar el recordatorio
     fun saveReminder(timeInMillis: Long) {
@@ -124,6 +126,18 @@ class CalendarActivity : ComponentActivity() {
         with(sharedPref.edit()) {
             putLong("reminder_$timeInMillis", timeInMillis)
             apply()
+        }
+    }
+
+    //Función para cargar los recordatorios guardados
+    fun loadReminders() {
+        val sharedPref = getSharedPreferences("reminders", Context.MODE_PRIVATE)
+        val allEntries = sharedPref.all
+        for ((key, value) in allEntries) {
+            if (key.startsWith("reminder_")) {
+                val timeInMillis = value as Long
+                reminders.add(Reminder(timeInMillis)) //Añadir el recordatorio cargado a la lista
+            }
         }
     }
 

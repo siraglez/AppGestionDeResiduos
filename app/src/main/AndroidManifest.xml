@@ -37,6 +37,7 @@
 
         <activity android:name=".CalendarActivity"/>
         <activity android:name=".MapActivity"/>
-        <receiver android:name=".ReminderReceiver" android:exported="true" />
+        <activity android:name=".EstadisticasActivity"/>
+
     </application>
 </manifest>

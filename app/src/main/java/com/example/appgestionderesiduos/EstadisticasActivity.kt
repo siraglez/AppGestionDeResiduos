@@ -1,5 +1,6 @@
 package com.example.appgestionderesiduos
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -25,6 +26,7 @@ import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.toArgb
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
@@ -103,6 +105,8 @@ fun Estadisticas() {
                 .height(220.dp)
                 .border(1.dp, Color.Black)
         )
+
+        BotonI()
     }
 }
 
@@ -197,6 +201,21 @@ fun createPieData(): PieData {
         valueTextSize = 12f
     }
     return PieData(dataSet)
+}
+
+@Composable
+fun BotonI(){
+    val context = LocalContext.current
+    Button(onClick = {
+        context.startActivity(
+            Intent(
+                context,
+                MainActivity::class.java
+            )
+        )
+    }) {
+        Text("Volver al inicio")
+    }
 }
 
 
