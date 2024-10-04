@@ -37,6 +37,6 @@ Por último, al final del activity encontramos los recordatorios que el usuario 
 
 ## Pantalla estadísticas
 
-En esta pantalla se le muestran al usuario las estadísticas de la aplicación, como la aplicación no esta siendo utilizada por usuarios reales no se tienen estadísticas reales, por lo tanto hacemos uso de estadísticas ficticias. 
+En esta pantalla se le muestran al usuario las estadísticas de la aplicación, como la aplicación no esta siendo utilizada por usuarios reales no se tienen estadísticas reales, por lo tanto hacemos uso de estadísticas ficticias con las cuáles el usuario puede interactúar. 
 
 A parte de esto la pantalla cuenta con un botón que devuelve al usuario a la pantalla de inicio para que pueda seguir utilizando la aplicacion libremente.
