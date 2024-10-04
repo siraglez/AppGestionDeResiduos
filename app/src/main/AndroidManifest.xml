@@ -1,7 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <!-- Permiso para acceder a Internet -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <!-- Si estás utilizando notificaciones -->
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
     <application
@@ -14,6 +17,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppGestionDeResiduos"
         tools:targetApi="31">
+
+        <!-- Eliminar meta-data de Google Maps API -->
+        <!-- <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="YOUR_API_KEY_HERE" /> -->
+
+        <!-- Actividades -->
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -21,13 +31,13 @@
             android:theme="@style/Theme.AppGestionDeResiduos">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity android:name=".CalendarActivity"/>
+        <activity android:name=".MapActivity"/>
         <activity android:name=".EstadisticasActivity"/>
 
     </application>
-
 </manifest>

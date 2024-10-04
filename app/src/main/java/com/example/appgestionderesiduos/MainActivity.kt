@@ -114,15 +114,11 @@ fun BotonE(){
 }
 
 @Composable
-fun BotonM(){
+fun BotonM() {
     val context = LocalContext.current
     Button(onClick = {
-        context.startActivity(Intent(context, MainActivity::class.java)) //cambiar a la clase para el mapa
+        context.startActivity(Intent(context, MapActivity::class.java))
     }) {
         Text("Mapa")
-
     }
 }
-
-//creamos los botones que nos llevaran a las diferentes pantallas de la aplicación
-
