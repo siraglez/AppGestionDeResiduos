@@ -1,7 +1,5 @@
 package com.example.appgestionderesiduos
 
-import android.app.AlarmManager
-import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -19,7 +17,6 @@ import java.util.*
 import android.widget.CalendarView
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.runtime.mutableStateListOf
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.text.style.TextAlign
 
 
@@ -84,7 +81,7 @@ class CalendarActivity : ComponentActivity() {
                                 Toast.LENGTH_LONG
                             ).show()
                         }
-                    }, 
+                    },
                         modifier = Modifier.width(140.dp) //Limitar el ancho del botón
                     ) {
                         Text(
@@ -119,6 +116,7 @@ class CalendarActivity : ComponentActivity() {
                 }
             }
         }
+
 
     //Función para guardar el recordatorio
     fun saveReminder(timeInMillis: Long) {
